@@ -1,11 +1,33 @@
-var object = {
-    id: '',
-    name: '',
-    lastname: '',
-    date: '',
-    street: '',
-    city: ''
-}
+var object = [
+    {name: 'თორნიკე',
+    lastname: 'გრიგალაშვილი',
+    date: '05/17/1990',
+    street: 'ჭავჭვაძე',
+    city: 'თბილისი'},
+    {name: 'გიორგი',
+    lastname: 'წერეთელი',
+    date: '12/12/1986',
+    street: 'ვაჟა-ფშაველა',
+    city: 'თბილისი'},
+    {name: 'სოფო',
+    lastname: 'გახოკიძე',
+    date: '07/24/1999',
+    street: 'ფალიაშვილი',
+    city: 'თბილისი'},
+    {name: 'ნინი',
+    lastname: 'ღლონტი',
+    date: '03/29/2001',
+    street: 'აბაშიძე',
+    city: 'თბილისი'},
+    {name: 'ლერი',
+    lastname: 'სანაძე',
+    date: '04/20/1979',
+    street: 'ჭავჭავაძე',
+    city: 'ქუთაისი'}
+
+]
+var filled = false
+var count = 0 
 $(document).ready(function(){
     //ენთერით დაჭერა
     $('input').keydown(function(e){
@@ -15,61 +37,77 @@ $(document).ready(function(){
     })
 
     $('#button').click(function(){
+        //დამატება მონაცემების
         if($('#name').val() || $('#lastname').val() || $('#date').val() || $('#street').val() || $('#city').val() ){
             object.name = $('#name').val()
             object.lastname = $('#lastname').val()
             object.date = $('#date').val()
             object.street = $('#street').val()
             object.city = $('#city').val()
-            newData = $('<tr><td scope="row">' + object.name + '</td><td>' + object.lastname + '</td><td>' + object.date + '</td><td>' + object.street + '</td><td>' + object.city + '</td><td><input type="checkbox" id="check">'+`${object.id}`+'</td></tr>')
+            newData = $('<tr id="dada"><th>'+ ++count +'.' +'</th><td scope="row">' + object.name + '</td><td>' + object.lastname + '</td><td>' + object.date + '</td><td>' + object.street + '</td><td>' + object.city + '</td><td><input type="checkbox" name="record"></td></tr>')
         }
-        $('#remove').click(function(){
             
-                $('#check').each(function(){
-                    $('this:checked').remove()
-                })
-            
-            
-        })
-       
+        
         $('#show').append(newData)
         $('#name').val('')
         $('#lastname').val('')
         $('#date').val('')
         $('#street').val('')
         $('#city').val('')
-        console.log(object)      
+        // console.log(object)      
     })
    
+      
+    // Checkbox მონიშვნა და წაშლა
+    $('#remove').click(function(){
+        $('#show').find('input[name="record"]').each(function(){
+            if($(this).is(':checked')){
+                $(this).parents("tr").remove();
+            }
+        })
+    })
+    // ძებნა
+   $('#search').on('keyup',function(){
+        var value = $(this).val()
+        $('#show tr').filter(function(){
+            $(this).toggle($(this).text().indexOf(value) > -1)
+        })
+   })
+   //array დან წამოღებულის დამაება
+   if(!filled){
+    for(var i = 0; i < object.length; i++){
+        object.name = $('#name').val()
+        object.lastname = $('#lastname').val()
+        object.date = $('#date').val()
+        object.street = $('#street').val()
+        object.city = $('#city').val()            
+        filled = true
+    
+        $('#show').append('<tr id="dada"><th>'+ ++count +'.' +'</th><td scope="row">' + object[i].name + '</td><td>' + object[i].lastname + '</td><td>' + object[i].date + '</td><td>' + object[i].street + '</td><td>' + object[i].city + '</td><td><input type="checkbox" name="record"></td></tr>')
+   }
+}
 })
 
 
-// $(document).ready(function(){
-// 	$("#remove").click(function(){
+// var array = new Array(10)
 
-// 	if(confirm("are you sure you want to delete"))
-// 	{
-		
-		
-// 		$("#check:checked").each(function(i){
-// 			object[i] = $(this).val();
-// 		})
-// 		if(object.length == 0){
-// 			alert("atleast check one");
-// 		}else{
-// 			for(var i = 0;i<object.length;i++){
-				
-// 				$(object[i]).css({"background":"red"});
-// 								$(object[i]).fadeOut("slow");
-
-				
-// 			}
-// 		}
-// 		console.log(object)
-// 	}
-// else{
-// 	return false;
+// function getRandom(){
+//     return Math.floor(Math.random() * 10) + 1
 // }
-// 	})
-	
-// })
+
+// function arrayNumber(array){
+//     for(var i = 0; i < array.length; i++){
+//         var number = getRandom()
+//         array[i] = number 
+//         for(var j = 0; j < array.length; j++){
+//             if(array[j] == number && i != j){
+//                 i--
+//                 break
+//             }
+//         }
+//     }
+// }
+// arrayNumber(array)
+// for(var i = 0; i < array.length; i++){
+//     console.log(array[i]);
+// }
