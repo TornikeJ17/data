@@ -21,7 +21,11 @@ var object = [
     city: 'თბილისი'},
     {name: 'ლერი',
     lastname: 'სანაძე',
+<<<<<<< HEAD
     date: '04/20/1979',
+=======
+    date: '04/20/1079',
+>>>>>>> 0a2e511aed90d94bbe4a45dab87417d7a0c65736
     street: 'ჭავჭავაძე',
     city: 'ქუთაისი'}
 
@@ -47,7 +51,42 @@ $(document).ready(function(){
             newData = $('<tr id="dada"><th>'+ ++count +'.' +'</th><td scope="row">' + object.name + '</td><td>' + object.lastname + '</td><td>' + object.date + '</td><td>' + object.street + '</td><td>' + object.city + '</td><td><input type="checkbox" name="record"></td></tr>')
         }
             
+<<<<<<< HEAD
         
+=======
+           if(!filled){
+            for(var i = 0; i < object.length; i++){
+                object.name = $('#name').val()
+                object.lastname = $('#lastname').val()
+                object.date = $('#date').val()
+                object.street = $('#street').val()
+                object.city = $('#city').val()
+                newData = $('<tr id="dada"><th>'+ ++count +'.' +'</th><td scope="row">' + object[i].name + '</td><td>' + object[i].lastname + '</td><td>' + object[i].date + '</td><td>' + object[i].street + '</td><td>' + object[i].city + '</td><td><input type="checkbox" name="record"></td></tr>')
+                
+                filled = true
+            
+                    
+                console.log(object[i])
+                }
+                $(window).load(object.length)
+           }
+          
+        // Checkbox მონიშვნა და წაშლა
+        $('#remove').click(function(){
+            $('#show').find('input[name="record"]').each(function(){
+                if($(this).is(':checked')){
+                    $(this).parents("tr").remove();
+                }
+            })
+        })
+        // ძებნა
+       $('#search').on('keyup',function(){
+            var value = $(this).val()
+            $('#show tr').filter(function(){
+                $(this).toggle($(this).text().indexOf(value) > -1)
+            })
+       })
+>>>>>>> 0a2e511aed90d94bbe4a45dab87417d7a0c65736
         $('#show').append(newData)
         $('#name').val('')
         $('#lastname').val('')
@@ -56,6 +95,7 @@ $(document).ready(function(){
         $('#city').val('')
         // console.log(object)      
     })
+<<<<<<< HEAD
    
       
     // Checkbox მონიშვნა და წაშლა
@@ -111,3 +151,13 @@ $(document).ready(function(){
 // for(var i = 0; i < array.length; i++){
 //     console.log(array[i]);
 // }
+=======
+    
+    
+})
+
+
+$(document).ready(function(){
+
+})
+>>>>>>> 0a2e511aed90d94bbe4a45dab87417d7a0c65736
