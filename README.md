@@ -1,4 +1,5 @@
 # მონაცემთა ბაზა   
+# დემო https://tornikej17.github.io/data
 
 1. ემატება მომხმარებლის მონაცემები
 2. გაკეთებულია Html,Bootstrap,CSS,jQuery
